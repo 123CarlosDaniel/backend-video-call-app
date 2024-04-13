@@ -19,9 +19,8 @@ import java.util.UUID;
 @Table(name = "recording_tbl")
 public class RecordingEntity {
     @Id
-    @GeneratedValue
     private UUID id;
-    private String title;
+    private String name;
     private long creationDate;
     private String recordingKey;
 }
