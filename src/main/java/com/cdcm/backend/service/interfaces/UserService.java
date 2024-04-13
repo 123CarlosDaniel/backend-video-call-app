@@ -4,8 +4,10 @@ import com.cdcm.backend.dto.ContactDto;
 import com.cdcm.backend.dto.RecordingDto;
 import com.cdcm.backend.dto.RoomDto;
 import com.cdcm.backend.dto.UserDto;
+import com.cdcm.backend.entity.RecordingEntity;
 import com.cdcm.backend.entity.UserEntity;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface UserService {
@@ -19,4 +21,6 @@ public interface UserService {
     void addRoomToUser(RoomDto roomDto, UUID id);
 
     void addRecordingToUser(RecordingDto recordingDto, UUID id);
+
+    List<RecordingEntity> getRecordingsData(UUID id);
 }

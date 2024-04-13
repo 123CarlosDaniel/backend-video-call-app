@@ -100,10 +100,17 @@ public class UserServiceImp implements UserService {
     public void addRecordingToUser(RecordingDto recordingDto, UUID id) {
         var user = userRepository.findById(id).orElseThrow(() -> new NotFoundException("User not found"));
         user.getRecordings().add(RecordingEntity.builder()
-                        .title(recordingDto.getTitle())
+                        .id(recordingDto.getId())
+                        .name(recordingDto.getName())
                         .recordingKey(recordingDto.getRecordingKey())
                         .creationDate(recordingDto.getCreationDate())
                 .build());
         userRepository.save(user);
+    }
+
+    @Override
+    public List<RecordingEntity> getRecordingsData(UUID id) {
+        var user = userRepository.findById(id).orElseThrow(() -> new NotFoundException("User not found"));
+        return user.getRecordings();
     }
 }
