@@ -49,4 +49,10 @@ public class UserController {
         userService.addRecordingToUser(recordingDto, id);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
+
+
+    @GetMapping("/{id}/add-recording")
+    public ResponseEntity<?> getRecordingsData(@PathVariable(name = "id") UUID id) {
+        return ResponseEntity.ok(userService.getRecordingsData(id));
+    }
 }
