@@ -55,4 +55,10 @@ public class UserController {
     public ResponseEntity<?> getRecordingsData(@PathVariable(name = "id") UUID id) {
         return ResponseEntity.ok(userService.getRecordingsData(id));
     }
+
+    @DeleteMapping("/delete-recording/{recordingId}")
+    public ResponseEntity<?> deleteRecording(@PathVariable(name = "recordingId") UUID recordingId) {
+        userService.deleteRecording(recordingId);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
 }
