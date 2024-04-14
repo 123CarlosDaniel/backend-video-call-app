@@ -23,4 +23,6 @@ public interface UserService {
     void addRecordingToUser(RecordingDto recordingDto, UUID id);
 
     List<RecordingEntity> getRecordingsData(UUID id);
+
+    void deleteRecording(UUID recordingId);
 }

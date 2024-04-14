@@ -4,6 +4,7 @@ import com.cdcm.backend.dto.*;
 import com.cdcm.backend.entity.RecordingEntity;
 import com.cdcm.backend.entity.RoomEntity;
 import com.cdcm.backend.exception.customs.NotFoundException;
+import com.cdcm.backend.repository.RecordingRepository;
 import com.cdcm.backend.repository.RoomRepository;
 import com.cdcm.backend.repository.UserRepository;
 import com.cdcm.backend.service.interfaces.UserService;
@@ -23,6 +24,8 @@ public class UserServiceImp implements UserService {
     @Autowired
     private RoomRepository roomRepository;
 
+    @Autowired
+    private RecordingRepository recordingRepository;
     @Override
     public UserDto getUserInfoById(UUID id) {
         var user = userRepository.findById(id).orElseThrow(()-> new NotFoundException("User not found"));
@@ -112,5 +115,11 @@ public class UserServiceImp implements UserService {
     public List<RecordingEntity> getRecordingsData(UUID id) {
         var user = userRepository.findById(id).orElseThrow(() -> new NotFoundException("User not found"));
         return user.getRecordings();
+    }
+
+    @Override
+    public void deleteRecording(UUID recordingId) {
+        recordingRepository.findById(recordingId).orElseThrow(() -> new NotFoundException("Recording not found"));
+        recordingRepository.deleteById(recordingId);
     }
 }
